@@ -618,7 +618,7 @@ MONGO_EXPORT int mongo_replset_connect( mongo *conn ) {
 
                 /* Primary found, so return. */
                 else if( conn->replset->primary_connected ) {
-                    strncpy( conn->primary->host, node->host, sizeof(conn->primary->host) - 1 );
+                    snprintf( conn->primary->host, sizeof(conn->primary->host), "%s", node->host );
                     conn->primary->port = node->port;
                     return MONGO_OK;
                 }
